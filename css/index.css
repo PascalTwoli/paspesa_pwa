@@ -133,8 +133,10 @@ main{
 
 .p1{
   margin: 0px 0px 0px;
-  color: rgb(255, 105, 51);
+  /* color: rgb(255, 105, 51); */
+  color: #e9854b;
   font-size: 26px;
+  font-weight: bold;
 }
 
 .mpesaMessage{
