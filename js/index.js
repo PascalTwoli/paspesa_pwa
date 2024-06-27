@@ -89,6 +89,7 @@ function printMessage() {
             errorMessage.style.display = 'none';
         }, 4000);
         popupAmount.innerHTML = `- KSH ${amount}`;
+        if (timeString)
         smsTime.innerHTML = `<p class="sms-time1">SMS &#x2022; ${timeString}</p>`;
         popupMessage.innerHTML = `Paid <span class="span3">to</span> <span class="span4">${name}</span>`;
 

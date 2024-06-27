@@ -104,7 +104,7 @@ main{
 
 .sms-time1{
     color: white;
-    font-weight: lighter;
+    font-weight: normal;
     margin: 0px 0px 0px 0px ;
 }
 
@@ -116,7 +116,7 @@ main{
 
 .white-box{
     background-color: white;
-    height: 128px;
+    height: 134px;
     width: 418px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
