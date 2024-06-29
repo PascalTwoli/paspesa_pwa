@@ -51,6 +51,7 @@ main{
     margin: 20px auto;
     top: 4px;
     padding-bottom: 10px;
+    padding-top: 3px;
 
 }
 
@@ -90,20 +91,24 @@ main{
 }
 
  .close-icon{
-        margin-top: 15px;
-        color: red;
+        margin-top: 5px;
+        margin-right: 5px;
+        /* color: rgb(205, 205, 205); */
+        color: #a9defb;
+        font-size: 30px;
 } 
 
 
 .sms-time{
-    color: white;
+    color: rgb(205, 205, 205);
     font-weight: normal;
     margin: 13px 0px 0px 0px ;
    
 }
 
 .sms-time1{
-    color: white;
+    /* color: rgb(205, 205, 205); */
+    color: #a9defb;
     font-weight: normal;
     margin: 0px 0px 0px 0px ;
 }
@@ -120,7 +125,7 @@ main{
     width: 418px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    margin: -4px 10px 0px;
+    margin: 4px 10px 0px;
     padding-left: 12px;
     
     
@@ -138,11 +143,13 @@ main{
   color: #e9854b;
   font-size: 26px;
   font-weight: 550 !important;
+  letter-spacing: 0px;
 }
 
 .mpesaMessage{
     font-size: 16.5px;
-    color: rgb(69, 69, 69);
+    /* color: rgb(69, 69, 69); */
+    color: #62696f;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -153,7 +160,8 @@ main{
 }
 
 .span3{
-  color: rgb(105, 105, 105);
+  /* color: rgb(105, 105, 105); */
+  color: #696970;
   font-weight: normal;
 }
 .span4{
@@ -176,6 +184,25 @@ main{
     margin-right: 10px;
 }
 
+.no-circle-div{
+  background-color: #f6d7d4;
+  padding-left: 12px;
+  margin-top: 0px;
+  padding-top: 0px;
+  border-radius: 100px;
+  padding-bottom: 3px;
+  padding-right: 2px;
+}
+.no-circle{
+  font-size: 30px;
+  color: #d95045;
+  margin-right: 10px;
+  margin-top: 0px;
+  padding-top: -20px;
+  font-weight: lighter;
+  height: 40px !important;
+}
+
 .grey-box{
     background-color: rgb(236, 245, 254);
     height: 50px;
@@ -193,7 +220,8 @@ main{
     text-align: center;
     align-items: center;
     /* color: rgb(47, 152, 244); */
-    color: rgb(30, 114, 241);
+    /* color: rgb(30, 114, 241); */
+    color: #3795e7;
     font-size: 14px;
     font-weight: normal;
     cursor: pointer;
@@ -209,7 +237,8 @@ h1{
     display: inline-block;
     margin-left: 8px;
     font-weight: normal;
-    color: rgb(108, 108, 108);
+    /* color: rgb(108, 108, 108); */
+    color: #7d8086;
 }
 
 .div1{
