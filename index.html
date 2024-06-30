@@ -8,46 +8,88 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  
 
   <style>
   </style>
 </head>
 <body>
-<h2 class="heading">My M-pesa</h2>
-<main>
+<div class="main-container">
 
-  <!-- mpesa  dialogue box -->
-  <section class="pop-up">
-    <div class="blue-box" id="bluebox">
-        <div class="header"> 
-                <img class="true" src="icons/true.png" alt="">    
-                <p class="sms-time"></p>
-                <!-- <img class="close-icon" src="icons/x-regular-132.png" alt=""> -->
-                <span class="close-icon">&times;</span>
-        </div>        
-        <div class="white-box">
-            <div class="mpesaapp">
-                <!-- <img class="mpesa-icon" src="icons/mpesa3 icon .png" alt=""> -->
-                <div class="no-circle-div">
-                  <span class="no-circle">&#x2298;</span>
-                </div>
-                <h1 class="h1">MPESA</h1>
-            </div>
-            <div class="message-box">
-                <p class="p1"></p>
-                <p class="mpesaMessage" ></p>               
-            </div>           
+<main>
+  <div class="modal1">
+    <!-- mpesa  dialogue box -->
+    <section class="pop-up">
+      <div class="blue-box" id="bluebox">
+          <div class="header"> 
+                  <img class="true" src="icons/true.png" alt="">    
+                  <p class="sms-time"></p>
+                  <!-- <img class="close-icon" src="icons/x-regular-132.png" alt=""> -->
+                  <span class="close-icon">&times;</span>
+          </div>        
+          <div class="white-box">
+              <div class="mpesaapp">
+                  <!-- <img class="mpesa-icon" src="icons/mpesa3 icon .png" alt=""> -->
+                  <div class="no-circle-div">
+                    <span class="no-circle">&#x2298;</span>
+                  </div>
+                  <h1 class="h1">MPESA</h1>
+              </div>
+              <div class="message-box">
+                  <p class="p1"></p>
+                  <p class="mpesaMessage" ></p>               
+              </div>           
+          </div>
+          <div class="grey-box">
+            <p class="p2 p2a">MARK AS READ</p>
+            <span class="span2"></span>
+            <p class="p2 p2b">VIEW PROFILE</p> 
+          </div> 
         </div>
-        <div class="grey-box">
-          <p class="p2 p2a">MARK AS READ</p>
-          <span class="span2"></span>
-          <p class="p2 p2b">VIEW PROFILE</p> 
-        </div> 
+    </section>
+    <div>
+      <span class="modal1-closer">&times;</span>
+      <div class="modal1-body">
+        <div class="profile-div">
+          <span class="profile-span"></span>
+        </div>
+        <p class="profile-name"></p>
+        <p class="profile-ksh"></p>
+        <div class="div5">
+          <span>FAMILY AND FRIENDS</span>
+          <span style="font-size: 20px; font-weight: bolder; margin-left: 6px;">&#x2228;</span>
+        </div>
+        <!-- <span>&#xF26B;</span> -->
+        <img class="check-circle" src="icons/check-circle.svg" alt="">
+        <p class="success-trans">Your transaction is successful</p>
+        <P  class="id-trans"></P>
+        <div class="modal1-foot-div">
+          <div class="modal1-foot">
+            <span class="div6"></span>
+            <span class="foot-span">ADD TO FAVORITES</span>
+          </div>
+          <div class="modal1-foot">
+            <div class="div6"></div>
+            <span class="foot-span">REVERSE TRANSACTION</span>
+          </div>
+          <div class="modal1-foot">
+            <div class="div6"></div>
+            <span class="foot-span">DOWNLOAD RECEIPT</span>
+          </div>
+          <div class="modal1-foot">
+            <div class="div6"></div>
+            <span class="foot-span">SHARE DETAILS</span>
+          </div>
+        </div>
+        <div class="done">DONE</div>
       </div>
-  </section> 
+    </div>
+  </div>
+
 
   <section class="section2">
       <!-- form for the mpesa details -->
+      <h2 class="heading">My M-pesa</h2>
       <h3>Customer Details</h3>
       <div class="div1">  
         <div class="div2">
@@ -96,6 +138,9 @@
   <div class="error-div">
     <p class="errorMessage"></p>
   </div> 
+</div>
+
+
 </div>
 
 

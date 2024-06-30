@@ -4,11 +4,23 @@ const popUpCloser = document.querySelector('.close-icon');
 const markAsRead = document.querySelector('.p2a');
 const messageElementDiv = document.querySelector('.mpesaMessage1-div');
 const popupAmount = document.querySelector('.p1');
+let modal1 = document.querySelector('.modal1');
+let modal1Closer = document.querySelector('.modal1-closer');
+let modal1Done =  document.querySelector('.done');
+let profileName = document.querySelector('.profile-name');
+let kshInModal1 = document.querySelector('.profile-ksh');
+let transIdInModal1 = document.querySelector('.id-trans');
+let firstLettersName = document.querySelector('.profile-span');
+
+
+
 
 // Initializing display styles
 popUp.style.display = 'none';
 messageElementDiv.style.display = 'none';
+modal1.style.display = 'none';
 
+//click events
 popUpCloser.addEventListener('click', () => {
     popUp.style.display = 'none';
 });
@@ -16,6 +28,14 @@ popUpCloser.addEventListener('click', () => {
 markAsRead.addEventListener('click', () => {
     popUp.style.display = 'none';
 });
+
+modal1Closer.addEventListener('click', () => {
+    modal1.style.display = 'none';
+})
+modal1Done.addEventListener('click', () => {
+    modal1.style.display = 'none';
+})
+
 
 function uniqueId() {
     const idStrLen = 10;
@@ -55,6 +75,16 @@ function printMessage() {
     const messageElement = document.querySelector('.mpesaMessage1'); 
     const smsTime = document.querySelector('.blue-box .header .sms-time');
 
+    //getting the first letters of each name;
+    const fullName = name;
+    const names = fullName.split(" ");
+    const firstInitial = names[0].charAt(0);
+    const lastInitial = names[names.length - 1].charAt(0);
+    const initializedName = firstInitial + lastInitial;
+
+    //name to uppercase;
+    const nameInUppercase = name.toUpperCase();
+
     // const messageElement = document.querySelector('.mpesaMessage1'); 
     const message = document.createElement("p");
 
@@ -85,6 +115,11 @@ function printMessage() {
         errorMessage.style.display = 'block';
         popUp.style.display = 'block';
 
+        modal1.style.display = 'block';
+        profileName.innerHTML = `${nameInUppercase}`;
+        kshInModal1.innerHTML = `KSH. ${amount}.00 <span class="fee-span">FEE: ${cost}.00 </span>`;
+        transIdInModal1.innerHTML = `ID: ${ID}`;
+        firstLettersName.innerHTML = initializedName.toUpperCase();
         setTimeout(() => {
             errorMessage.style.display = 'none';
         }, 4000);
@@ -95,7 +130,7 @@ function printMessage() {
 
         setTimeout(() => {
             messageElementDiv.style.display = 'block';
-            message.textContent = `${ID} Confirmed. Ksh${amount}.00 paid to ${name} ${tel} on ${currentDate} at ${timeString}. New MPESA balance is Ksh${balance}.00. Transaction cost, Ksh${cost}.00. Amount you can transact within the day is Ksh499,140.00. To move money from bank to MPESA dial *334#>Withdraw>From bank to MPESA.`;
+            message.innerHTML = `${ID} Confirmed. Ksh${amount}.00 paid to ${nameInUppercase} <span class="span5">${tel}</span> on ${currentDate} at ${timeString}. New MPESA balance is Ksh${balance}.00. Transaction cost, Ksh${cost}.00. Amount you can transact within the day is Ksh499,140.00. To move money from bank to MPESA dial *334#>Withdraw>From bank to MPESA.`;
             messageElement.appendChild(message);
         }, 4000);
     }
@@ -108,5 +143,6 @@ function enterToSubmit(event) {
     }
 
 }
+
 
 
