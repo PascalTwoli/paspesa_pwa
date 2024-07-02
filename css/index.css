@@ -27,8 +27,8 @@ main{
     width: 458px;
     margin: 0px auto;
     box-shadow: 0px 0px 5px -2px grey;
-    border-radius: 7px;
-    height: 100%;
+    /* border-radius: 7px; */
+    min-height: 100%;
 }
 
 .section2{
@@ -53,9 +53,7 @@ main{
   bottom: 0px !important;
   margin: 0 auto;
   width: 465px;
-  margin-left: -6.8px ;
-  /* display: none; */
-  overflow: auto;
+  margin-left: -7px;
   height: 100%;
   color: white;
 }
@@ -85,12 +83,15 @@ main{
 }
 
 .profile-div{
-  display: inline-block;
+  display: flex;
   margin: 0 auto;
-  padding: 30px 30px;
+  padding: 1rem;
   background-color: #f7f4fd;
   border-radius: 50px;
-  
+  width: 35px;
+  height: 35px; 
+  align-items: center;
+  justify-content: center;
 }
 
 .profile-span{
@@ -112,39 +113,58 @@ font-weight: bold;
   color: #a9a9a9;
 }
 
-.div5{
-  margin-top: 0px;
-  background-color: #e4f2fd;
-  width: fit-content;
+#money-for{
   margin: 0 auto;
-  color: #1d72e4;
-  padding: 3px 10px;
   border-radius: 20px;
-  font-size: 14px;
-  font-weight: 550 !important;
-  margin-bottom: 90px;
+  width: fit-content;
+  border: none;
+  background-color: #e4f2fd;
+  font-size: 16px;
+  font-weight: 600 !important;
+  padding: 8px 20px;
+  color: #1d72e4;
+  outline: none;
+  
+  /* -webkit-appearance: none; */
+  appearance: none;
+}
+option{
+  color: green;
 }
 
-  .check-circle {
-  color: white;
-  width: 100px;
-  /* font-size: 2000px; */
- 
+.modal1-center-div{
+  position: fixed;
+  width: 465px;
+  align-items: center;
+  /* margin: 0px auto; */
+  top: 40%;
 }
-
 .success-trans{
   color: #2fc56c;
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 550 !important;
 }
 .id-trans{
   color: #2fc56c;
   font-weight: bold;
   font-size: 20px;
   margin-bottom: 70px;
+  background-color: #121b16;
+  display: inline;
+  padding: 3px 5px;
+  border-radius: 20px;
+}
+.bi-copy{
+  margin-left: 5px;
+}
+.modal1-footer{
+  position: fixed;
+  bottom: 20px;
 }
 
 .modal1-foot-div{
   display: flex;
+  gap: 30px;
 }
 
 .modal1-foot{
@@ -153,16 +173,24 @@ font-weight: bold;
   align-items: center;
 }
 .div6{
-  height: 60px;
-  width: 60px;
+  height: 50px;
+  width: 50px;
   background-color: white;
   display: inline-block;
-  border-radius: 49px;
+  border-radius: 50px;
   margin-bottom: 4px;
-}
+  color: grey;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 
 .foot-span{
+  display: flex;
   font-size: 13px;
   color: #666666;
+  flex-wrap: wrap;
+  max-width: 90px;
 }
 
 .done{
@@ -378,6 +406,7 @@ h1{
     display: flex;
     text-align: left;
     margin-bottom: 30px;
+    align-items: center;
   }
 
   input{
@@ -387,13 +416,21 @@ h1{
     width: 100%;
     outline: none;
     border: 1px solid grey;
-    padding-left: 4px;
+    /* padding-left: 4px; */
+    padding: 12px 10px 12px 4px;
     flex-basis: 60%;
     border-radius: 6px;
+    font-size: 20px;
   }
 
   label{
     flex-basis: 30%;
+  }
+
+  .clearInput{
+    margin-left: -15px;
+    color: grey;
+    cursor: default;
   }
 
   /* .mpesaMessage1-div{

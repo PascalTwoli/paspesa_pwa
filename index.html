@@ -8,10 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  
 
-  <style>
-  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+
+
 </head>
 <body>
 <div class="main-container">
@@ -55,33 +57,51 @@
         </div>
         <p class="profile-name"></p>
         <p class="profile-ksh"></p>
-        <div class="div5">
-          <span>FAMILY AND FRIENDS</span>
-          <span style="font-size: 20px; font-weight: bolder; margin-left: 6px;">&#x2228;</span>
-        </div>
-        <!-- <span>&#xF26B;</span> -->
-        <img class="check-circle" src="icons/check-circle.svg" alt="">
-        <p class="success-trans">Your transaction is successful</p>
-        <P  class="id-trans"></P>
-        <div class="modal1-foot-div">
-          <div class="modal1-foot">
-            <span class="div6"></span>
-            <span class="foot-span">ADD TO FAVORITES</span>
-          </div>
-          <div class="modal1-foot">
-            <div class="div6"></div>
-            <span class="foot-span">REVERSE TRANSACTION</span>
-          </div>
-          <div class="modal1-foot">
-            <div class="div6"></div>
-            <span class="foot-span">DOWNLOAD RECEIPT</span>
-          </div>
-          <div class="modal1-foot">
-            <div class="div6"></div>
-            <span class="foot-span">SHARE DETAILS</span>
+        <!-- <span>FAMILY AND FRIENDS</span> -->
+        <select name="money-for" id="money-for">
+          <option value="shopping" class="shop">SHOPPING</option>
+          <option>FOOD AND BEVERAGE</option>
+          <option>ENTERTAINMENT</option>
+          <option>TRANSPORT AND TRAVEL</option>
+          <option>BILLS AND SERVICES</option>
+          <option>EDUCATION</option>
+          <option>COUNTY AND GOVERNMENT</option>
+          <option>WITHDRAWAL</option>
+          <option>LOANS AND SAVINGS</option>
+          <option selected>FAMILY AND FRIENDS</option>
+          <option>CONTRIBUTION</option>
+          <option>GENERAL</option>
+        </select>
+        
+  
+        <div class="modal1-center-div">
+          <div class="modal1-center">
+            <img class="check-circle" src="icons/check-circle.svg" alt="">
+            <p class="success-trans">Your transaction is successful</p>
+            <P  class="id-trans"></P>
           </div>
         </div>
-        <div class="done">DONE</div>
+        <div class="modal1-footer">
+          <div class="modal1-foot-div">
+            <div class="modal1-foot">
+              <span class="div6"><i class="bi bi-star"></i></span>
+              <span class="foot-span">ADD TO FAVORITES</span>
+            </div>
+            <div class="modal1-foot">
+              <span class="div6"><i class="bi bi-arrow-counterclockwise"></i></span>
+              <span class="foot-span">REVERSE TRANSACTION</span>
+            </div>
+            <div class="modal1-foot">
+              <span class="div6"><i class="bi bi-receipt"></i></span>
+              <span class="foot-span">DOWNLOAD RECEIPT</span>
+            </div>
+            <div class="modal1-foot">
+              <span class="div6"><i class="bi bi-upload"></i></span>
+              <span class="foot-span">SHARE DETAILS</span>
+            </div>
+          </div>
+          <div class="done">DONE</div>
+        </div>
       </div>
     </div>
   </div>
@@ -96,21 +116,25 @@
             <div class="div3">
                 <label for="name">Full Name:</label>
                 <input type="text" class="js-input1" id="name" placeholder="Your name..." onkeydown="enterToSubmit()"><br><br>
+                <span class="clearInput" onclick="document.querySelector('.js-input1').value =  ''">&times;</span> 
             </div>
 
             <div class="div3">
                 <label for="tel">Tel:</label>
                 <input type="tel" class="js-input4" id="tel" placeholder="Telephone Number..." onkeydown="enterToSubmit()"><br><br>
+                <span class="clearInput" onclick="document.querySelector('.js-input4').value =  ''">&times;</span> 
             </div>
 
             <div class="div3">
                 <label for="amount">Amount:</label>
-                <input type="text" class="js-input3" id="amount" placeholder="Amount..." onkeydown="enterToSubmit()"><br><br>    
+                <input type="text" class="js-input3" id="amount" placeholder="Amount..." onkeydown="enterToSubmit()"><br><br> 
+                <span class="clearInput" onclick="document.querySelector('.js-input3').value =  ''">&times;</span>   
             </div>
 
             <div class="div3">
                 <label for="balance">Balance:</label>
-                <input type="text" class="js-input6" id="balance" placeholder="Mpesa balance..." onkeydown="enterToSubmit()"><br><br>    
+                <input type="text" class="js-input6" id="balance" placeholder="Mpesa balance..." onkeydown="enterToSubmit()"><br><br>
+                <span class="clearInput" onclick="document.querySelector('.js-input6').value =  ''">&times;</span>    
             </div>
             <button onclick="printMessage()" class="message-button">Mpesa Message</button>
         </div>

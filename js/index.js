@@ -15,6 +15,11 @@ let firstLettersName = document.querySelector('.profile-span');
 
 
 
+
+
+
+
+
 // Initializing display styles
 popUp.style.display = 'none';
 messageElementDiv.style.display = 'none';
@@ -35,6 +40,7 @@ modal1Closer.addEventListener('click', () => {
 modal1Done.addEventListener('click', () => {
     modal1.style.display = 'none';
 })
+
 
 
 function uniqueId() {
@@ -118,7 +124,7 @@ function printMessage() {
         modal1.style.display = 'block';
         profileName.innerHTML = `${nameInUppercase}`;
         kshInModal1.innerHTML = `KSH. ${amount}.00 <span class="fee-span">FEE: ${cost}.00 </span>`;
-        transIdInModal1.innerHTML = `ID: ${ID}`;
+        transIdInModal1.innerHTML = `ID: ${ID}<i class="bi bi-copy"></i>`;
         firstLettersName.innerHTML = initializedName.toUpperCase();
         setTimeout(() => {
             errorMessage.style.display = 'none';
@@ -137,7 +143,7 @@ function printMessage() {
 }
 
 // Function to submit message on 'Enter' key press
-function enterToSubmit(event) {
+function enterToSubmit() {
     if (event.key === 'Enter') {
         printMessage();
     }
