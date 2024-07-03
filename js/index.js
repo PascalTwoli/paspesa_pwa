@@ -11,12 +11,9 @@ let profileName = document.querySelector('.profile-name');
 let kshInModal1 = document.querySelector('.profile-ksh');
 let transIdInModal1 = document.querySelector('.id-trans');
 let firstLettersName = document.querySelector('.profile-span');
-
-
-
-
-
-
+const messagesModal = document.querySelector('.messages-modal')
+const fromMessages = document.querySelector('.bi-caret-left');
+const goToMessages = document.querySelector('.to-messages');
 
 
 
@@ -24,6 +21,7 @@ let firstLettersName = document.querySelector('.profile-span');
 popUp.style.display = 'none';
 messageElementDiv.style.display = 'none';
 modal1.style.display = 'none';
+messagesModal.style.display = 'none';
 
 //click events
 popUpCloser.addEventListener('click', () => {
@@ -41,7 +39,13 @@ modal1Done.addEventListener('click', () => {
     modal1.style.display = 'none';
 })
 
+fromMessages.addEventListener('click', () => {
+    messagesModal.style.display = 'none';
+})
 
+goToMessages.addEventListener('click', () => {
+    messagesModal.style.display = 'block';
+}) 
 
 function uniqueId() {
     const idStrLen = 10;
@@ -80,6 +84,7 @@ function printMessage() {
     const popupMessage = document.querySelector('.blue-box .message-box .mpesaMessage');
     const messageElement = document.querySelector('.mpesaMessage1'); 
     const smsTime = document.querySelector('.blue-box .header .sms-time');
+
 
     //getting the first letters of each name;
     const fullName = name;
