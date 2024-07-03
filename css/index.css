@@ -466,7 +466,7 @@ h1{
     cursor: pointer;
     color: rgb(237, 237, 237);
     background-color: rgb(32, 32, 32);
-    padding: 4px 6px;
+    padding: 10px 10px;
     border-radius: 3px;
     border: none;
   }
@@ -566,6 +566,6 @@ h1{
   .to-messages{
     border-radius: 30px;
     border: 1px grey solid;
-    padding: 3px 5px;
+    padding: 10px 12px;
 
   }
