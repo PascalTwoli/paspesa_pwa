@@ -12,8 +12,9 @@ let kshInModal1 = document.querySelector('.profile-ksh');
 let transIdInModal1 = document.querySelector('.id-trans');
 let firstLettersName = document.querySelector('.profile-span');
 const messagesModal = document.querySelector('.messages-modal')
-const fromMessages = document.querySelector('.bi-caret-left');
+const fromMessages = document.querySelector('.bi-arrow-left');
 const goToMessages = document.querySelector('.to-messages');
+const popUpWhiteBox = document.querySelector('.white-box')
 
 
 
@@ -41,11 +42,16 @@ modal1Done.addEventListener('click', () => {
 
 fromMessages.addEventListener('click', () => {
     messagesModal.style.display = 'none';
+    popUp.style.display = 'none';
 })
 
 goToMessages.addEventListener('click', () => {
     messagesModal.style.display = 'block';
 }) 
+
+popUpWhiteBox.addEventListener('click', () => {
+    messagesModal.style.display = 'block';
+})
 
 function uniqueId() {
     const idStrLen = 10;
@@ -141,7 +147,7 @@ function printMessage() {
 
         setTimeout(() => {
             messageElementDiv.style.display = 'block';
-            message.innerHTML = `${ID} Confirmed. Ksh${amount}.00 paid to ${nameInUppercase} <span class="span5">${tel}</span> on ${currentDate} at ${timeString}. New MPESA balance is Ksh${balance}.00. Transaction cost, Ksh${cost}.00. Amount you can transact within the day is Ksh499,140.00. To move money from bank to MPESA dial *334#>Withdraw>From bank to MPESA.`;
+            message.innerHTML = `${ID} Confirmed. Ksh${amount}.00 paid to ${nameInUppercase} <span class="span5">${tel}</span> on <span class="span5"> ${currentDate} at ${timeString}.</span> New MPESA balance is Ksh${balance}.00. Transaction cost, Ksh${cost}.00. Amount you can transact within the day is Ksh499,897.00. Send Kes200 or more on MPESA for a chance to win 1M WEEKLY with Shine Kenya Mamili!`;
             messageElement.appendChild(message);
         }, 4000);
     }

@@ -16,156 +16,160 @@
 
 </head>
 <body>
-<div class="main-container">
+  <div class="main-container">
 
-<main>
-  <div class="modal1">
-    <!-- mpesa  dialogue box -->
-    <section class="pop-up">
-      <div class="blue-box" id="bluebox">
-          <div class="header"> 
-                  <img class="true" src="icons/true.png" alt="">    
-                  <p class="sms-time"></p>
-                  <!-- <img class="close-icon" src="icons/x-regular-132.png" alt=""> -->
-                  <span class="close-icon">&times;</span>
-          </div>        
-          <div class="white-box">
-              <div class="mpesaapp">
-                  <!-- <img class="mpesa-icon" src="icons/mpesa3 icon .png" alt=""> -->
-                  <div class="no-circle-div">
-                    <span class="no-circle">&#x2298;</span>
+    <main>
+      <div class="modal1">
+        <!-- mpesa  dialogue box -->
+        <section class="pop-up">
+          <div class="blue-box" id="bluebox">
+              <div class="header"> 
+                      <img class="true" src="icons/true.png" alt="">    
+                      <p class="sms-time"></p>
+                      <!-- <img class="close-icon" src="icons/x-regular-132.png" alt=""> -->
+                      <span class="close-icon">&times;</span>
+              </div>        
+              <div class="white-box">
+                  <div class="mpesaapp">
+                      <!-- <img class="mpesa-icon" src="icons/mpesa3 icon .png" alt=""> -->
+                      <div class="no-circle-div">
+                        <span class="no-circle">&#x2298;</span>
+                      </div>
+                      <h1 class="h1">MPESA</h1>
                   </div>
-                  <h1 class="h1">MPESA</h1>
+                  <div class="message-box">
+                      <p class="p1"></p>
+                      <p class="mpesaMessage" ></p>               
+                  </div>           
               </div>
-              <div class="message-box">
-                  <p class="p1"></p>
-                  <p class="mpesaMessage" ></p>               
-              </div>           
-          </div>
-          <div class="grey-box">
-            <p class="p2 p2a">MARK AS READ</p>
-            <span class="span2"></span>
-            <p class="p2 p2b">VIEW PROFILE</p> 
-          </div> 
-        </div>
-    </section>
-    <div>
-      <span class="modal1-closer">&times;</span>
-      <div class="modal1-body">
-        <div class="profile-div">
-          <span class="profile-span"></span>
-        </div>
-        <p class="profile-name"></p>
-        <p class="profile-ksh"></p>
-        <!-- <span>FAMILY AND FRIENDS</span> -->
-        <select name="money-for" id="money-for">
-          <option value="shopping" class="option1">SHOPPING</option>
-          <option>FOOD AND BEVERAGE</option>
-          <option>ENTERTAINMENT</option>
-          <option>TRANSPORT AND TRAVEL</option>
-          <option>BILLS AND SERVICES</option>
-          <option>EDUCATION</option>
-          <option>COUNTY AND GOVERNMENT</option>
-          <option>WITHDRAWAL</option>
-          <option>LOANS AND SAVINGS</option>
-          <option selected>FAMILY AND FRIENDS</option>
-          <option>CONTRIBUTION</option>
-          <option>GENERAL</option>
-        </select>
-        
-  
-        <div class="modal1-center-div">
-          <div class="modal1-center">
-            <img class="check-circle" src="icons/check-circle.svg" alt="">
-            <p class="success-trans">Your transaction is successful</p>
-            <P  class="id-trans"></P>
-          </div>
-        </div>
-        <div class="modal1-footer">
-          <div class="modal1-foot-div">
-            <div class="modal1-foot">
-              <span class="div6"><i class="bi bi-star"></i></span>
-              <span class="foot-span">ADD TO FAVORITES</span>
+              <div class="grey-box">
+                <p class="p2 p2a">MARK AS READ</p>
+                <span class="span2"></span>
+                <p class="p2 p2b">VIEW PROFILE</p> 
+              </div> 
             </div>
-            <div class="modal1-foot">
-              <span class="div6"><i class="bi bi-arrow-counterclockwise"></i></span>
-              <span class="foot-span">REVERSE TRANSACTION</span>
+        </section>
+        <div>
+          <span class="modal1-closer">&times;</span>
+          <div class="modal1-body">
+            <div class="profile-div">
+              <span class="profile-span"></span>
             </div>
-            <div class="modal1-foot">
-              <span class="div6"><i class="bi bi-receipt"></i></span>
-              <span class="foot-span">DOWNLOAD RECEIPT</span>
-            </div>
-            <div class="modal1-foot">
-              <span class="div6"><i class="bi bi-upload"></i></span>
-              <span class="foot-span">SHARE DETAILS</span>
-            </div>
-          </div>
-          <div class="done">DONE</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <section class="section2">
-      <!-- form for the mpesa details -->
-      <h2 class="heading">My M-pesa</h2>
-      <h3>Customer Details</h3>
-      <div class="div1">  
-        <div class="div2">
-            <div class="div3">
-                <label for="name">Full Name:</label>
-                <input type="text" class="js-input1" id="name" placeholder="Your name..." onkeydown="enterToSubmit()"><br><br>
-                <span class="clearInput" onclick="document.querySelector('.js-input1').value =  ''">&times;</span> 
-            </div>
-
-            <div class="div3">
-                <label for="tel">Tel:</label>
-                <input type="tel" class="js-input4" id="tel" placeholder="Telephone Number..." onkeydown="enterToSubmit()"><br><br>
-                <span class="clearInput" onclick="document.querySelector('.js-input4').value =  ''">&times;</span> 
-            </div>
-
-            <div class="div3">
-                <label for="amount">Amount:</label>
-                <input type="text" class="js-input3" id="amount" placeholder="Amount..." onkeydown="enterToSubmit()"><br><br> 
-                <span class="clearInput" onclick="document.querySelector('.js-input3').value =  ''">&times;</span>   
-            </div>
-
-            <div class="div3">
-                <label for="balance">Balance:</label>
-                <input type="text" class="js-input6" id="balance" placeholder="Mpesa balance..." onkeydown="enterToSubmit()"><br><br>
-                <span class="clearInput" onclick="document.querySelector('.js-input6').value =  ''">&times;</span>    
-            </div>
-            <button onclick="printMessage()" class="message-button">Mpesa Message</button>
-        </div>
-      </div>
+            <p class="profile-name"></p>
+            <p class="profile-ksh"></p>
+            <!-- <span>FAMILY AND FRIENDS</span> -->
+            <select name="money-for" id="money-for">
+              <option value="shopping" class="option1">SHOPPING</option>
+              <option>FOOD AND BEVERAGE</option>
+              <option>ENTERTAINMENT</option>
+              <option>TRANSPORT AND TRAVEL</option>
+              <option>BILLS AND SERVICES</option>
+              <option>EDUCATION</option>
+              <option>COUNTY AND GOVERNMENT</option>
+              <option>WITHDRAWAL</option>
+              <option>LOANS AND SAVINGS</option>
+              <option selected>FAMILY AND FRIENDS</option>
+              <option>CONTRIBUTION</option>
+              <option>GENERAL</option>
+            </select>
+            
       
+            <div class="modal1-center-div">
+              <div class="modal1-center">
+                <img class="check-circle" src="icons/check-circle.svg" alt="">
+                <p class="success-trans">Your transaction is successful</p>
+                <P  class="id-trans"></P>
+              </div>
+            </div>
+            <div class="modal1-footer">
+              <div class="modal1-foot-div">
+                <div class="modal1-foot">
+                  <span class="div6"><i class="bi bi-star"></i></span>
+                  <span class="foot-span">ADD TO FAVORITES</span>
+                </div>
+                <div class="modal1-foot">
+                  <span class="div6"><i class="bi bi-arrow-counterclockwise"></i></span>
+                  <span class="foot-span">REVERSE TRANSACTION</span>
+                </div>
+                <div class="modal1-foot">
+                  <span class="div6"><i class="bi bi-receipt"></i></span>
+                  <span class="foot-span">DOWNLOAD RECEIPT</span>
+                </div>
+                <div class="modal1-foot">
+                  <span class="div6"><i class="bi bi-upload"></i></span>
+                  <span class="foot-span">SHARE DETAILS</span>
+                </div>
+              </div>
+              <div class="done">DONE</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <button class="to-messages">Messages</button>
-  </section> 
-  
-  <!-- Messages  -->
-  <div class="messages-modal">
-    <div class="messages-head">
-      <i class="bi bi-caret-left"></i>
-      <img class="mpesa-icon"  src="icons/mpesa3 icon .png" alt="">
-      <h3 style="margin-top: 4px;">Messages</h3>
+
+      <section class="section2">
+          <!-- form for the mpesa details -->
+          <h2 class="heading">My M-pesa</h2>
+          <h3>Customer Details</h3>
+          <div class="div1">  
+            <div class="div2">
+                <div class="div3">
+                    <label for="name">Full Name:</label>
+                    <input type="text" class="js-input1" id="name" placeholder="Your name..." onkeydown="enterToSubmit()"><br><br>
+                    <span class="clearInput" onclick="document.querySelector('.js-input1').value =  ''">&times;</span> 
+                </div>
+
+                <div class="div3">
+                    <label for="tel">Tel:</label>
+                    <input type="tel" class="js-input4" id="tel" placeholder="Telephone Number..." onkeydown="enterToSubmit()"><br><br>
+                    <span class="clearInput" onclick="document.querySelector('.js-input4').value =  ''">&times;</span> 
+                </div>
+
+                <div class="div3">
+                    <label for="amount">Amount:</label>
+                    <input type="text" class="js-input3" id="amount" placeholder="Amount..." onkeydown="enterToSubmit()"><br><br> 
+                    <span class="clearInput" onclick="document.querySelector('.js-input3').value =  ''">&times;</span>   
+                </div>
+
+                <div class="div3">
+                    <label for="balance">Balance:</label>
+                    <input type="text" class="js-input6" id="balance" placeholder="Mpesa balance..." onkeydown="enterToSubmit()"><br><br>
+                    <span class="clearInput" onclick="document.querySelector('.js-input6').value =  ''">&times;</span>    
+                </div>
+                <button onclick="printMessage()" class="message-button">Mpesa Message</button>
+            </div>
+          </div>
+          
+
+          <button class="to-messages">Messages</button>
+      </section> 
+      
+      <!-- Messages  -->
+      <div class="messages-modal">
+        <div class="messages-head">
+          <div class="mpesa-head">
+            <i class="bi bi-arrow-left"></i>
+            <!-- <img class="mpesa-icon"  src="icons/mpesa3 icon .png" alt=""> -->
+            <h3  class="mpesa-word">MPESA</h3>
+          </div>
+          <i class="bi bi-three-dots-vertical"></i>
+        </div>
+        <div class="mpesaMessage1-div">
+            <p class="mpesaMessage1"></p>
+        </div>
+        <div class="message-modal-footer">
+          <p>Can't reply to this short code. <span class="message-modal-footer-p">Learn more</span></p>
+        </div>
+      </div>
+
+    </main>
+    <div class="div4">
+      <div class="error-div">
+        <p class="errorMessage"></p>
+      </div> 
     </div>
-    <div class="mpesaMessage1-div">
-        <p class="mpesaMessage1"></p>
-    </div>
+
   </div>
-
-</main>
-<div class="div4">
-  <div class="error-div">
-    <p class="errorMessage"></p>
-  </div> 
-</div>
-
-
-</div>
-
 
 
   <script src="js/index.js"></script>
