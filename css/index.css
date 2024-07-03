@@ -452,7 +452,7 @@ h1{
     font-size: 22px;
     line-height: 23px;
     text-align: left;
-    border-radius: 25px;
+    border-radius: 23px;
     letter-spacing: 1.5px;
     margin-bottom: 170px;
   }
@@ -548,10 +548,11 @@ h1{
     padding: 20px 30px;
     bottom: 0px;
     background-color: #1f1a21;
-    width: 465px;
+    width: 407px;
     color: #e9dfea;
-    font-size: 22px;
+    font-size: 20px;
     letter-spacing: 1.5px;
+    margin-left: -1px;
   }
 
   .message-modal-footer-p{
