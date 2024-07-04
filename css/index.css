@@ -447,14 +447,14 @@ h1{
     padding: 1px 18px; 
     font-family: madefor-text-bold,helveticaneuew01-65medi,helveticaneuew02-65medi,helveticaneuew10-65medi,sans-serif;
     margin-left: 6px;
-    font-weight: 320 !important;
+    font-weight: normal !important;
     color: #e6e1e5;
     font-size: 22px;
-    line-height: 23px;
+    line-height: 28px;
     text-align: left;
     border-radius: 23px;
-    letter-spacing: 1.5px;
-    margin-bottom: 170px;
+    letter-spacing: 1.2px;
+    margin-bottom: 190px;
   }
 
   .span5{
@@ -512,7 +512,6 @@ h1{
     background-color: #231e25;
     top: 0px;
     width: 465.5px;
-    box-shadow: 0 0 2px 0px grey;
     padding-top: 30px;
     padding-bottom: 20px;
     justify-content: space-between;
@@ -553,6 +552,9 @@ h1{
     font-size: 20px;
     letter-spacing: 1.5px;
     margin-left: -1px;
+  }
+  .p3{
+    margin: 0px;
   }
 
   .message-modal-footer-p{
