@@ -147,9 +147,11 @@ function printMessage() {
 
         setTimeout(() => {
             messageElementDiv.style.display = 'block';
-            message.innerHTML = `${ID} Confirmed. Ksh${amount}.00 paid to ${nameInUppercase} <span class="span5">${tel}</span> on <span class="span5"> ${currentDate} at ${timeString}.</span> New MPESA balance is Ksh${balance}.00. Transaction cost, Ksh${cost}.00. Amount you can transact within the day is Ksh499,897.00. Send Kes200 or more on MPESA for a chance to win 1M WEEKLY with Shine Kenya Mamili!`;
-            messageElement.appendChild(message);
+            /*const storedData =*/ message.innerHTML = `${ID} Confirmed. Ksh${amount}.00 sent to ${nameInUppercase} <span class="span5">${tel}</span> on <span class="span5"> ${currentDate} at ${timeString}.</span> New MPESA balance is Ksh${balance}.00. Transaction cost, Ksh${cost}.00. Amount you can transact within the day is Ksh499,897.00. Send Kes200 or more on MPESA for a chance to win 1M WEEKLY with Shine Kenya Mamili!`;
+            /*const m1 =*/ messageElement.appendChild(message);
         }, 4000);
+        // localStorage.setItem("storedMessage", storedData);
+        // m1.localStorage.getItem("storedMessage");
     }
 }
 

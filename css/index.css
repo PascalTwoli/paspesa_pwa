@@ -445,7 +445,8 @@ h1{
     border: none;
     width: 380px;
     padding: 1px 18px; 
-    font-family: madefor-text-bold,helveticaneuew01-65medi,helveticaneuew02-65medi,helveticaneuew10-65medi,sans-serif;
+    /* font-family: madefor-text-bold,helveticaneuew01-65medi,helveticaneuew02-65medi,helveticaneuew10-65medi,sans-serif; */
+    font-family: "Almarai", sans-serif;
     margin-left: 6px;
     font-weight: normal !important;
     color: #e6e1e5;
