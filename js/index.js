@@ -34,6 +34,7 @@ markAsRead.addEventListener('click', () => {
 modal1Closer.addEventListener('click', () => {
   modal1.style.display = 'none';
 });
+
 modal1Done.addEventListener('click', () => {
   modal1.style.display = 'none';
 });
@@ -71,15 +72,6 @@ function uniqueId() {
   return idStr;
 }
 
-// Time variables
-const date = new Date();
-const options = { timeStyle: 'short', hour12: true };
-const dayDate = date.getDate();
-const month = date.getMonth() + 1;
-const year = date.getFullYear();
-const timeString = date.toLocaleTimeString('en-US', options);
-const currentDate = `${dayDate}/${month}/${year}`;
-
 // Function to print the message
 function printMessage() {
   const amount = document.querySelector('.js-input3').value;
@@ -93,6 +85,16 @@ function printMessage() {
   );
   const messageElement = document.querySelector('.mpesaMessage1');
   const smsTime = document.querySelector('.blue-box .header .sms-time');
+
+  // Get the current date and time when the message is triggered
+  const date = new Date();
+  const options = { timeStyle: 'short', hour12: true };
+  const dayDate = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const timeString = date.toLocaleTimeString('en-US', options);
+  const currentDate = `${dayDate}/${month}/${year}`;
+  const messageTime = `${currentDate} at ${timeString}`;
 
   // Getting the first letters of each name
   const fullName = name;
@@ -152,47 +154,58 @@ function printMessage() {
     const messageText = `${ID} Confirmed. Ksh${amount}.00 sent to ${nameInUppercase} <span class="span5">${tel}</span> on <span class="span5"> ${currentDate} at ${timeString}.</span> New MPESA balance is Ksh${balance}.00. Transaction cost, Ksh${cost}.00.`;
 
     setTimeout(() => {
-      messageElementDiv.style.display = 'block';
-      addMessageToDisplay(messageText);
+      messageElementDiv.style.display = 'block'; // Make the message container visible
+      addMessageToDisplay(messageText, messageTime);
     }, 4000);
   }
 }
 
 // Function to add a message to the displayed messages and local storage
-function addMessageToDisplay(messageText) {
-  const messageElement = document.querySelector('.mpesaMessage1');
+function addMessageToDisplay(messageText, messageTime) {
+  const messageContainer = document.querySelector('.mpesaMessage1');
+  const messageCard = document.createElement('div');
+  messageCard.classList.add('message-card'); // Add card class
+
+  // Create a paragraph for the message text
   const message = document.createElement('p');
   message.innerHTML = messageText;
 
-  // Append the new message to the messageElement
-  messageElement.appendChild(message);
+  // Create an element for the time
+  const timeElement = document.createElement('span');
+  timeElement.classList.add('message-time');
+  timeElement.textContent = `Time: ${messageTime}`;
+
+  // Append the message and time to the message card
+  messageCard.appendChild(message);
+  messageCard.appendChild(timeElement);
+
+  // Append the message card to the message container
+  messageContainer.appendChild(messageCard);
 
   // Save the message to local storage
-  saveMessageToLocalStorage(messageText);
+  saveMessageToLocalStorage(messageText, messageTime);
 }
 
-// Function to save message to local storage
-function saveMessageToLocalStorage(messageText) {
+// Function to save messages and time to local storage
+function saveMessageToLocalStorage(messageText, messageTime) {
   let messages = JSON.parse(localStorage.getItem('messages')) || [];
-  messages.push(messageText);
+  messages.push({ text: messageText, time: messageTime });
   localStorage.setItem('messages', JSON.stringify(messages));
 }
 
-// Function to load messages from local storage
-function loadMessages() {
-  const messages = JSON.parse(localStorage.getItem('messages')) || [];
-  const messageElement = document.querySelector('.mpesaMessage1');
+// Function to load messages from local storage on page load
+// function loadMessages() {
+//   const messages = JSON.parse(localStorage.getItem('messages')) || [];
+//   const messageElement = document.querySelector('.mpesaMessage1');
 
-  // Clear any existing messages
-  messageElement.innerHTML = '';
+//   // Clear any existing messages
+//   messageElement.innerHTML = '';
 
-  // Loop through stored messages and append them to the messageElement
-  messages.forEach((msg) => {
-    const message = document.createElement('p');
-    message.innerHTML = msg;
-    messageElement.appendChild(message);
-  });
-}
+//   // Loop through stored messages and append them as cards
+//   messages.forEach((msgObj) => {
+//     addMessageToDisplay(msgObj.text, msgObj.time);
+//   });
+// }
 
 // Call loadMessages when the page loads
 document.addEventListener('DOMContentLoaded', loadMessages);
@@ -217,3 +230,74 @@ function clearMessages() {
 document
   .querySelector('.clear-messages-button')
   .addEventListener('click', clearMessages);
+
+
+  // Function to group messages by date
+function addMessageToDisplay(messageText, messageTime) {
+  const messageContainer = document.querySelector('.mpesaMessage1-div');
+  const messageDate = messageTime.split(' at ')[0]; // Extract date from time string
+  
+  // Check if there's already a group for the current date
+  let dateGroup = document.querySelector(`.date-group[data-date='${messageDate}']`);
+  if (!dateGroup) {
+    // Create a new date group if it doesn't exist
+    dateGroup = document.createElement('div');
+    dateGroup.classList.add('date-group');
+    dateGroup.setAttribute('data-date', messageDate);
+
+    // Add a date header
+    const dateHeader = document.createElement('h4');
+    dateHeader.textContent = messageDate;
+
+    // Append the header to the date group
+    dateGroup.appendChild(dateHeader);
+    messageContainer.appendChild(dateGroup);
+  }
+
+  // Create a message card
+  const messageCard = document.createElement('div');
+  messageCard.classList.add('message-card');
+
+  // Create a paragraph for the message text
+  const message = document.createElement('p');
+  message.innerHTML = messageText;
+
+  // Create an element for the time
+  const timeElement = document.createElement('span');
+  timeElement.classList.add('message-time');
+  timeElement.textContent = messageTime;
+
+  // Append the message and time to the message card
+  messageCard.appendChild(message);
+  messageCard.appendChild(timeElement);
+
+  // Append the message card to the corresponding date group
+  dateGroup.appendChild(messageCard);
+
+  // Save the message to local storage
+  saveMessageToLocalStorage(messageText, messageTime);
+}
+
+// // Function to save messages and time to local storage
+// function saveMessageToLocalStorage(messageText, messageTime) {
+//   let messages = JSON.parse(localStorage.getItem('messages')) || [];
+//   messages.push({ text: messageText, time: messageTime });
+//   localStorage.setItem('messages', JSON.stringify(messages));
+// }
+
+// Function to load messages from local storage on page load
+function loadMessages() {
+  const messages = JSON.parse(localStorage.getItem('messages')) || [];
+  const messageContainer = document.querySelector('.mpesaMessage1-div');
+
+  // Clear any existing messages
+  messageContainer.innerHTML = '';
+
+  // Loop through stored messages and group them by date
+  messages.forEach((msgObj) => {
+    addMessageToDisplay(msgObj.text, msgObj.time);
+  });
+}
+
+// Call loadMessages when the page loads
+document.addEventListener('DOMContentLoaded', loadMessages);
