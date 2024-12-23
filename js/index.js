@@ -15,6 +15,7 @@ const messagesModal = document.querySelector('.messages-modal');
 const fromMessages = document.querySelector('.bi-arrow-left');
 const goToMessages = document.querySelector('.to-messages');
 const popUpWhiteBox = document.querySelector('.white-box');
+// const messagesMore = document.querySelector('.messages-more');
 
 // Initializing display styles
 popUp.style.display = 'none';
@@ -83,6 +84,7 @@ function printMessage() {
   const popupMessage = document.querySelector(
     '.blue-box .message-box .mpesaMessage'
   );
+  const max_payable_amount = 500000 - amount;
   const messageElement = document.querySelector('.mpesaMessage1');
   const smsTime = document.querySelector('.blue-box .header .sms-time');
 
@@ -151,7 +153,7 @@ function printMessage() {
 
     popupMessage.innerHTML = `Paid <span class="span3">to</span> <span class="span4">${name}</span>`;
 
-    const messageText = `${ID} Confirmed. Ksh${amount}.00 sent to ${nameInUppercase} <span class="span5">${tel}</span> on <span class="span5"> ${currentDate} at ${timeString}.</span> New MPESA balance is Ksh${balance}.00. Transaction cost, Ksh${cost}.00.`;
+    const messageText = `${ID} Confirmed. Ksh${amount}.00 sent to ${nameInUppercase} <span class="span5">${tel}</span> on <span class="span5"> ${currentDate} at ${timeString}.</span> New M-PESA balance is Ksh${balance}.00. Transaction cost, Ksh${cost}.00. Amount you can  transact within the day is ${max_payable_amount}. Sign up for Lipa Na M-PESA Till online.`;
 
     setTimeout(() => {
       messageElementDiv.style.display = 'block'; // Make the message container visible
@@ -160,7 +162,7 @@ function printMessage() {
   }
 }
 
-// Function to add a message to the displayed messages and local storage
+// Function to add a message to the displayed in messages and local storage
 function addMessageToDisplay(messageText, messageTime) {
   const messageContainer = document.querySelector('.mpesaMessage1');
   const messageCard = document.createElement('div');
@@ -193,19 +195,6 @@ function saveMessageToLocalStorage(messageText, messageTime) {
   localStorage.setItem('messages', JSON.stringify(messages));
 }
 
-// Function to load messages from local storage on page load
-// function loadMessages() {
-//   const messages = JSON.parse(localStorage.getItem('messages')) || [];
-//   const messageElement = document.querySelector('.mpesaMessage1');
-
-//   // Clear any existing messages
-//   messageElement.innerHTML = '';
-
-//   // Loop through stored messages and append them as cards
-//   messages.forEach((msgObj) => {
-//     addMessageToDisplay(msgObj.text, msgObj.time);
-//   });
-// }
 
 // Call loadMessages when the page loads
 document.addEventListener('DOMContentLoaded', loadMessages);
@@ -236,18 +225,38 @@ document
 function addMessageToDisplay(messageText, messageTime) {
   const messageContainer = document.querySelector('.mpesaMessage1-div');
   const messageDate = messageTime.split(' at ')[0]; // Extract date from time string
-  
+
+  //get today and yesterday in the same format
+  const today = new Date();
+  const yesterday = new Date();
+  yesterday.setDate(today.getDate - 1);
+
+  const todayString = `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`;
+  const yesterdayString = `${yesterday.getDate()}/${yesterday.getMonth()+1}/${yesterday.getFullYear()}`;
+
+  // Determine the display text for the date group;
+  let dateGroupHeaderText;
+  if (messageDate === todayString) {
+    dateGroupHeaderText = 'Today';
+  } else if (messageDate === yesterdayString) {
+    dateGroupHeaderText ='Yesterday';
+  } else {
+    dateGroupHeaderText = messageText;
+  }
+
+  //
   // Check if there's already a group for the current date
   let dateGroup = document.querySelector(`.date-group[data-date='${messageDate}']`);
   if (!dateGroup) {
     // Create a new date group if it doesn't exist
-    dateGroup = document.createElement('div');
+    dateGroup = document.createElement('div'); 
     dateGroup.classList.add('date-group');
     dateGroup.setAttribute('data-date', messageDate);
 
     // Add a date header
     const dateHeader = document.createElement('h4');
-    dateHeader.textContent = messageDate;
+    dateHeader.textContent = dateGroupHeaderText;
+    dateHeader.classList.add('date-group-header')
 
     // Append the header to the date group
     dateGroup.appendChild(dateHeader);
@@ -264,8 +273,9 @@ function addMessageToDisplay(messageText, messageTime) {
 
   // Create an element for the time
   const timeElement = document.createElement('span');
-  timeElement.classList.add('message-time');
+  timeElement.classList.add('each-message-time');
   timeElement.textContent = messageTime;
+  
 
   // Append the message and time to the message card
   messageCard.appendChild(message);
@@ -277,13 +287,6 @@ function addMessageToDisplay(messageText, messageTime) {
   // Save the message to local storage
   saveMessageToLocalStorage(messageText, messageTime);
 }
-
-// // Function to save messages and time to local storage
-// function saveMessageToLocalStorage(messageText, messageTime) {
-//   let messages = JSON.parse(localStorage.getItem('messages')) || [];
-//   messages.push({ text: messageText, time: messageTime });
-//   localStorage.setItem('messages', JSON.stringify(messages));
-// }
 
 // Function to load messages from local storage on page load
 function loadMessages() {
@@ -301,3 +304,34 @@ function loadMessages() {
 
 // Call loadMessages when the page loads
 document.addEventListener('DOMContentLoaded', loadMessages);
+
+// // Function to clear all the messages
+// function clearAllMessages () {
+//   //remove messages from the local storage
+//   localStorage.removeItem('massages');
+
+//   //clear the message container  on the page
+//   const messageContainer = document.querySelector('.mpesaMessage1-div');
+//   messageContainer.innerHTML = '';
+// }
+
+// //Attach clearAllMessages function to the button click
+// messagesMore.addEventListener('click', clearAllMessages);
+
+document.addEventListener('DOMContentLoaded', () => {
+  const messagesMore = document.querySelector('.messages-more');
+
+  if (messagesMore) {
+    messagesMore.addEventListener('click', () => {
+      // Clear all messages
+      localStorage.removeItem('messages');
+      const messageContainer = document.querySelector('.mpesaMessage1-div');
+      if (messageContainer) {
+        messageContainer.innerHTML = '';
+      }
+      alert('All messages have been deleted.');
+    });
+  } else {
+    console.error('Button with class "messages-more" not found.');
+  }
+});

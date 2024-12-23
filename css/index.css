@@ -423,14 +423,17 @@ label {
 .mpesaMessage1-div {
   max-height: 650px;
   overflow-y: auto; /* Enable vertical scrolling when needed */
+  margin-bottom: 170px;
+  /* background-color: blue; */
 }
 
 .mpesaMessage1 {
   background-color: #312f32;
+  background-color: blue;
   border: none;
   width: 380px;
   padding: 1px 18px;
-  /* font-family: madefor-text-bold,helveticaneuew01-65medi,helveticaneuew02-65medi,helveticaneuew10-65medi,sans-serif; */
+  font-family: madefor-text-bold,helveticaneuew01-65medi,helveticaneuew02-65medi,helveticaneuew10-65medi,sans-serif;
   font-family: 'Almarai', sans-serif;
   margin-left: 6px;
   font-weight: normal !important;
@@ -440,7 +443,38 @@ label {
   text-align: left;
   border-radius: 23px;
   letter-spacing: 1.2px;
-  margin-bottom: 190px;
+  margin-bottom: 500px;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto; 
+
+} 
+
+.message-card {
+  background-color: #43434e;
+  border-radius: 12px;
+  padding: 1px 10px;
+  margin: 10px 0;
+  margin-left: 10px;
+  margin-right: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* color: #ffffff; */
+  color: lightgrey;
+  font-size: 16px;
+}
+.date-group{
+  color: lightgrey;
+}
+.date-group-header{
+  /* color: yellow; */
+  margin-left: 10px;
+  font-weight: normal;
+}
+
+.each-message-time {
+  color: rgb(179, 179, 179);
+  font-size: smaller;
 }
 
 .span5 {
@@ -529,7 +563,7 @@ label {
 
 .message-modal-footer {
   position: fixed;
-  padding: 20px 30px;
+  padding: 15px 30px;
   bottom: 0px;
   background-color: #1f1a21;
   width: 407px;
@@ -557,19 +591,4 @@ a {
   padding: 10px 12px;
 }
 
-.mpesaMessage1 {
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-  margin: 0 auto;
-}
 
-.message-card {
-  background-color: #43434e;
-  border-radius: 12px;
-  padding: 3px;
-  margin: 10px 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  color: #ffffff;
-  font-size: 16px;
-}
