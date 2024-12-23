@@ -153,7 +153,7 @@ function printMessage() {
 
     popupMessage.innerHTML = `Paid <span class="span3">to</span> <span class="span4">${name}</span>`;
 
-    const messageText = `${ID} Confirmed. Ksh${amount}.00 sent to ${nameInUppercase} <span class="span5">${tel}</span> on <span class="span5"> ${currentDate} at ${timeString}.</span> New M-PESA balance is Ksh${balance}.00. Transaction cost, Ksh${cost}.00. Amount you can  transact within the day is ${max_payable_amount}. Sign up for Lipa Na M-PESA Till online.`;
+    const messageText = `${ID} Confirmed. Ksh${amount}.00 sent to ${nameInUppercase} <span class="span5">${tel}</span> on <span class="span5"> ${currentDate} at ${timeString}.</span> New M-PESA balance is Ksh${balance}.00. Transaction cost, Ksh${cost}.00. Amount you can  transact within the day is ${max_payable_amount}.00. Sign up for Lipa Na M-PESA Till online.`;
 
     setTimeout(() => {
       messageElementDiv.style.display = 'block'; // Make the message container visible
