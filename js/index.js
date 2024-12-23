@@ -229,7 +229,8 @@ function addMessageToDisplay(messageText, messageTime) {
   //get today and yesterday in the same format
   const today = new Date();
   const yesterday = new Date();
-  yesterday.setDate(today.getDate - 1);
+  yesterday.setDate(today.getDate() - 1);
+  // console.log("this is yesterday date: "+ yesterday.setDate(today.getDate() - 1));
 
   const todayString = `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`;
   const yesterdayString = `${yesterday.getDate()}/${yesterday.getMonth()+1}/${yesterday.getFullYear()}`;
@@ -241,7 +242,7 @@ function addMessageToDisplay(messageText, messageTime) {
   } else if (messageDate === yesterdayString) {
     dateGroupHeaderText ='Yesterday';
   } else {
-    dateGroupHeaderText = messageText;
+    dateGroupHeaderText = messageTime;
   }
 
   //
@@ -305,33 +306,34 @@ function loadMessages() {
 // Call loadMessages when the page loads
 document.addEventListener('DOMContentLoaded', loadMessages);
 
-// // Function to clear all the messages
-// function clearAllMessages () {
-//   //remove messages from the local storage
-//   localStorage.removeItem('massages');
+// Function to clear all the messages
+function clearAllMessages () {
+  //remove messages from the local storage
+  localStorage.removeItem('massages');
 
-//   //clear the message container  on the page
-//   const messageContainer = document.querySelector('.mpesaMessage1-div');
-//   messageContainer.innerHTML = '';
-// }
+  //clear the message container  on the page
+  const messageContainer = document.querySelector('.mpesaMessage1-div');
+  messageContainer.innerHTML = '';
+}
 
-// //Attach clearAllMessages function to the button click
+//Attach clearAllMessages function to the button click
 // messagesMore.addEventListener('click', clearAllMessages);
 
-document.addEventListener('DOMContentLoaded', () => {
-  const messagesMore = document.querySelector('.messages-more');
 
-  if (messagesMore) {
-    messagesMore.addEventListener('click', () => {
-      // Clear all messages
-      localStorage.removeItem('messages');
-      const messageContainer = document.querySelector('.mpesaMessage1-div');
-      if (messageContainer) {
-        messageContainer.innerHTML = '';
-      }
-      alert('All messages have been deleted.');
-    });
-  } else {
-    console.error('Button with class "messages-more" not found.');
-  }
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//   const messagesMore = document.querySelector('.messages-more');
+
+//   if (messagesMore) {
+//     messagesMore.addEventListener('click', () => {
+//       // Clear all messages
+//       localStorage.removeItem('messages');
+//       const messageContainer = document.querySelector('.mpesaMessage1-div');
+//       if (messageContainer) {
+//         messageContainer.innerHTML = '';
+//       }
+//       alert('All messages have been deleted.');
+//     });
+//   } else {
+//     console.error('Button with class "messages-more" not found.');
+//   }
+// });
