@@ -60,7 +60,7 @@ function uniqueId() {
   idStr += new Date().getTime().toString(36).toUpperCase();
 
   if (!idStr.startsWith('S')) {
-    idStr = 'S' + idStr;
+    idStr = 'T' + idStr;
   }
 
   while (idStr.length < idStrLen) {
@@ -172,6 +172,7 @@ function addMessageToDisplay(messageText, messageTime) {
   const message = document.createElement('p');
   message.innerHTML = messageText;
 
+
   // Create an element for the time
   const timeElement = document.createElement('span');
   timeElement.classList.add('message-time');
@@ -271,6 +272,7 @@ function addMessageToDisplay(messageText, messageTime) {
   // Create a paragraph for the message text
   const message = document.createElement('p');
   message.innerHTML = messageText;
+  message.classList.add('message-card-p-content');
 
   // Create an element for the time
   const timeElement = document.createElement('span');
