@@ -490,7 +490,14 @@ label {
   margin-left: 5px;
  
 }
+.each-message-time span {
+  color: #2e417b;
+  margin-left: -4px;
+}
 
+.each-message-time i{
+  margin-left: -4px;
+}
 .span5 {
   text-decoration: underline;
 }

@@ -47,6 +47,8 @@ fromMessages.addEventListener('click', () => {
 
 goToMessages.addEventListener('click', () => {
   messagesModal.style.display = 'block';
+  // loadMessages();
+  document.addEventListener('DOMContentLoaded', loadMessages);
 });
 
 popUpWhiteBox.addEventListener('click', () => {
@@ -90,13 +92,19 @@ function printMessage() {
 
   // Get the current date and time when the message is triggered
   const date = new Date();
-  const options = { timeStyle: 'short', hour12: true };
   const dayDate = date.getDate();
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
-  const timeString = date.toLocaleTimeString('en-US', options);
   const currentDate = `${dayDate}/${month}/${year}`;
-  const messageTime = `${currentDate} at ${timeString}`;
+  //time in 12hr clock
+  const options = { timeStyle: 'short', hour12: true }; 
+  const timeString = date.toLocaleTimeString('en-US', options); 
+  //time in 24 hour clock
+  // const timeString24 = date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}); 
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  const timeString24 = `${hours}:${minutes}`;
+  const messageTime = `${currentDate} at ${timeString24}`;
 
   // Getting the first letters of each name
   const fullName = name;
@@ -157,42 +165,15 @@ function printMessage() {
 
     setTimeout(() => {
       messageElementDiv.style.display = 'block'; // Make the message container visible
-      addMessageToDisplay(messageText, messageTime);
+      addMessageToDisplay(messageText, messageTime, timeString24);
     }, 4000);
   }
 }
 
-// Function to add a message to the displayed in messages and local storage
-function addMessageToDisplay(messageText, messageTime) {
-  const messageContainer = document.querySelector('.mpesaMessage1');
-  const messageCard = document.createElement('div');
-  messageCard.classList.add('message-card'); // Add card class
-
-  // Create a paragraph for the message text
-  const message = document.createElement('p');
-  message.innerHTML = messageText;
-
-
-  // Create an element for the time
-  const timeElement = document.createElement('span');
-  timeElement.classList.add('message-time');
-  timeElement.textContent = `Time: ${messageTime}`;
-
-  // Append the message and time to the message card
-  messageCard.appendChild(message);
-  messageCard.appendChild(timeElement);
-
-  // Append the message card to the message container
-  messageContainer.appendChild(messageCard);
-
-  // Save the message to local storage
-  saveMessageToLocalStorage(messageText, messageTime);
-}
-
 // Function to save messages and time to local storage
-function saveMessageToLocalStorage(messageText, messageTime) {
+function saveMessageToLocalStorage(messageText, messageTime, timeString24) {
   let messages = JSON.parse(localStorage.getItem('messages')) || [];
-  messages.push({ text: messageText, time: messageTime });
+  messages.push({ text: messageText, time: messageTime, time24: timeString24 });
   localStorage.setItem('messages', JSON.stringify(messages));
 }
 
@@ -223,7 +204,7 @@ document
 
 
   // Function to group messages by date
-function addMessageToDisplay(messageText, messageTime) {
+function addMessageToDisplay(messageText, messageTime, timeString24) {
   const messageContainer = document.querySelector('.mpesaMessage1-div');
   const messageDate = messageTime.split(' at ')[0]; // Extract date from time string
 
@@ -246,7 +227,6 @@ function addMessageToDisplay(messageText, messageTime) {
     dateGroupHeaderText = messageTime;
   }
 
-  //
   // Check if there's already a group for the current date
   let dateGroup = document.querySelector(`.date-group[data-date='${messageDate}']`);
   if (!dateGroup) {
@@ -277,8 +257,8 @@ function addMessageToDisplay(messageText, messageTime) {
   // Create an element for the time
   const timeElement = document.createElement('span');
   timeElement.classList.add('each-message-time');
-  timeElement.textContent = messageTime;
-  
+  // timeElement.textContent = messageTime;
+  timeElement.innerHTML = `${timeString24} <i class="bi bi-dot"></i> <span>Safaricom</span>`;
 
   // Append the message and time to the message card
   messageCard.appendChild(message);
@@ -288,31 +268,40 @@ function addMessageToDisplay(messageText, messageTime) {
   dateGroup.appendChild(messageCard);
 
   // Save the message to local storage
-  saveMessageToLocalStorage(messageText, messageTime);
+  saveMessageToLocalStorage(messageText, messageTime, timeString24);
+
+  //event listener to hide and expose messageTime;
+  timeElement.style.display = 'none';
+  messageCard.addEventListener('click', () => {
+    if (timeElement.style.display == 'none') {
+      timeElement.style.display = 'block';
+    } else {
+      timeElement.style.display = 'none';
+    }
+  })
 }
 
 // Function to load messages from local storage on page load
 function loadMessages() {
   const messages = JSON.parse(localStorage.getItem('messages')) || [];
   const messageContainer = document.querySelector('.mpesaMessage1-div');
-
   // Clear any existing messages
   messageContainer.innerHTML = '';
-
   // Loop through stored messages and group them by date
   messages.forEach((msgObj) => {
-    addMessageToDisplay(msgObj.text, msgObj.time);
+    addMessageToDisplay(msgObj.text, msgObj.time, msgObj.time24);
   });
 }
 
 // Call loadMessages when the page loads
 document.addEventListener('DOMContentLoaded', loadMessages);
 
+
+
 // Function to clear all the messages
 function clearAllMessages () {
   //remove messages from the local storage
   localStorage.removeItem('massages');
-
   //clear the message container  on the page
   const messageContainer = document.querySelector('.mpesaMessage1-div');
   messageContainer.innerHTML = '';
