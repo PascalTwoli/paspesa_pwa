@@ -15,13 +15,19 @@ const messagesModal = document.querySelector('.messages-modal');
 const fromMessages = document.querySelector('.bi-arrow-left');
 const goToMessages = document.querySelector('.to-messages');
 const popUpWhiteBox = document.querySelector('.white-box');
-// const messagesMore = document.querySelector('.messages-more');
+const messagesActionsBtn = document.querySelector('.messages-more');
+const actionsCard = document.querySelector('.actions-card');
+const deleteAllBtn = document.querySelector('.delete-all-btn');
+const deleteAlert = document.querySelector('.deleteAlert');
+const cancelDelete = document.querySelector('.cancel-delete');
 
 // Initializing display styles
 popUp.style.display = 'none';
 messageElementDiv.style.display = 'none';
 modal1.style.display = 'none';
 messagesModal.style.display = 'none';
+actionsCard.style.display = 'none';
+deleteAlert.style.display = 'none';
 
 // Click events
 popUpCloser.addEventListener('click', () => {
@@ -55,13 +61,36 @@ popUpWhiteBox.addEventListener('click', () => {
   messagesModal.style.display = 'block';
 });
 
+messagesActionsBtn.addEventListener('click', () => {
+  if (actionsCard.style.display == 'none') {
+    actionsCard.style.display ='block';
+  } else {
+    actionsCard.style.display = 'none';
+  }
+
+});
+
+deleteAllBtn.addEventListener('click', () => {
+  actionsCard.style.display = 'none';
+  deleteAlert.style.display = 'block';
+})
+cancelDelete.addEventListener('click', () => {
+  deleteAlert.style.display = 'none'
+})
+
+messageElementDiv.addEventListener('click', () => {
+  if (actionsCard.style.display == 'block') {
+    actionsCard.style.display = 'none';
+  }
+})
+
 // Unique ID generation function
 function uniqueId() {
   const idStrLen = 10;
   let idStr = (Math.floor(Math.random() * 25) + 10).toString(36).toUpperCase();
   idStr += new Date().getTime().toString(36).toUpperCase();
 
-  if (!idStr.startsWith('S')) {
+  if (!idStr.startsWith('T')) {
     idStr = 'T' + idStr;
   }
 
@@ -305,6 +334,9 @@ function clearAllMessages () {
   //clear the message container  on the page
   const messageContainer = document.querySelector('.mpesaMessage1-div');
   messageContainer.innerHTML = '';
+  if (deleteAlert.style.display == 'block'){
+    deleteAlert.style.display = 'none';
+  }
 }
 
 //Attach clearAllMessages function to the button click

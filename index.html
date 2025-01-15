@@ -153,10 +153,30 @@
              </div>
             <h3  class="mpesa-word">MPESA</h3>
           </div>
-          <i class="bi bi-three-dots-vertical messages-more" onclick="clearAllMessages()"></i>
+          <i class="bi bi-three-dots-vertical messages-more" ></i>
+          <div class="actions-card">
+            <p>Add people </p>
+            <p>Details</p>
+            <p>Starred</p>
+            <p>Search</p>
+            <p>Archive</p>
+            <p class="delete-all-btn">Delete</p>
+            <p>Block and report spam</p>
+            <p>Help and feedback</p>
+          </div>
+
+          <div class="deleteAlert">
+            <p>Delete this conversation?</p>
+            <span class="span01">This action cannot be undone.</span>
+            <div>
+              <span class="cancel-delete">Cancel</span>
+              <span onclick="clearAllMessages()">Delete</span>
+            </div>
+          </div>
         </div>
+        <!-- generated messages goes here -->
         <div class="mpesaMessage1-div">
-            <p class="mpesaMessage1"></p>
+            <p class="mpesaMessage1"></p> 
         </div>
         <div class="message-modal-footer">
           <p class="p3">Can't reply to this short code. <span class="message-modal-footer-p">Learn more</span></p>

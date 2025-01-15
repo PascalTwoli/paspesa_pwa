@@ -560,6 +560,53 @@ label {
   justify-content: space-between;
 }
 
+.actions-card{
+  position: absolute;
+  color: white;
+  right: 8px;
+  width: 250px;
+  font-weight: 300;
+  font-size: 14px;
+  top: 80px;
+  background-color: #1c2023;
+  box-shadow: 0px 2px 2px #101417;
+}
+
+.actions-card p{
+  padding: 8px;
+}
+
+.deleteAlert {
+  width: 280px;
+  position: absolute;
+  top: 300px;
+  left: 50px;
+  background-color: #292a2c;
+  border-radius: 30px;
+  padding: 20px 45px 25px 20px;
+}
+
+.deleteAlert p{
+  font-weight: 400;
+  font-size: 23px;
+  color: #d9dadc;
+  margin-top: 4px;
+}
+
+.deleteAlert .span01{
+  color: #adaeb1;
+  /* margin-top: 10px;
+  margin-bottom: 100px; */
+}
+
+.deleteAlert div{
+  color: #8ec3d7;
+  display: flex;
+  margin-top: 35px;
+  justify-content: end;
+  gap: 30px;
+  
+}
 .mpesa-head {
   display: flex;
 }
