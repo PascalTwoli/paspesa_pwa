@@ -1,0 +1,20 @@
+{
+    "short_name": "M-Pesa App",
+    "name": "M-Pesa Web App",
+    "icons": [
+      {
+        "src": "/icons/p-icon.jpeg",
+        "sizes": "192x192",
+        "type": "image/jpeg"
+      },
+      {
+        "src": "/icons/p2-icon.jpg",
+        "sizes": "512x512",
+        "type": "image/jpg"
+      }
+    ],
+    "start_url": "/index.html",
+    "background_color": "#181c1f",
+    "display": "standalone",
+    "theme_color": "#009688"
+  }
