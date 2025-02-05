@@ -61,8 +61,6 @@ fromMessages.addEventListener('click', () => {
 
 goToMessages.addEventListener('click', () => {
   messagesModal.style.display = 'block';
-  // loadMessages();
-  document.addEventListener('DOMContentLoaded', loadMessages);
 });
 
 popUpWhiteBox.addEventListener('click', () => {
@@ -210,8 +208,12 @@ function printMessage() {
 // Function to save messages and time to local storage
 function saveMessageToLocalStorage(messageText, messageTime, timeString24) {
   let messages = JSON.parse(localStorage.getItem('messages')) || [];
-  messages.push({ text: messageText, time: messageTime, time24: timeString24 });
-  localStorage.setItem('messages', JSON.stringify(messages));
+
+  const exists = messages.some(msg => msg.text === messageText && msg.time === messageTime);
+  if (!exists) {
+    messages.push({ text: messageText, time: messageTime, time24: timeString24 });
+    localStorage.setItem('messages', JSON.stringify(messages));
+  }
 }
 
 
@@ -239,6 +241,55 @@ document
   .querySelector('.clear-messages-button')
   .addEventListener('click', clearMessages);
 
+  //////---------//////
+
+  // Function to handle the deletion of a message
+function deleteMessage(messageElement, messageText) {
+  // Remove the message from localStorage
+  let messages = JSON.parse(localStorage.getItem('messages')) || [];
+  messages = messages.filter(msg => msg.text !== messageText);
+  localStorage.setItem('messages', JSON.stringify(messages));
+
+  // Remove the message from the DOM
+  messageElement.remove();
+}
+
+// functionality for deleting a message by swiping left or right
+function addSwipeToDelete(messageElement, messageText) {
+  let startX, startY;  
+
+  messageElement.addEventListener('touchstart', function(event) {  
+    startX = event.touches[0].clientX;  
+    startY = event.touches[0].clientY;  
+  }, false);  
+
+  messageElement.addEventListener('touchend', function(event) {  
+    const endX = event.changedTouches[0].clientX;  
+    const endY = event.changedTouches[0].clientY;  
+    const deltaX = endX - startX;  
+    const deltaY = endY - startY;  
+
+    if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY)) {  
+      // Swipe detected  
+      if (deltaX > 0) {  
+        // console.log('Swiped right');  
+        const confirmDelete = confirm("Do you want to delete this message?");
+        if (confirmDelete) {
+          deleteMessage(messageElement, messageText);
+        }
+      } else {  
+        // console.log('Swiped left'); 
+        const confirmDelete = confirm("Do you want to delete this message?");
+        if (confirmDelete) {
+          deleteMessage(messageElement, messageText);
+        } 
+      }  
+    }  
+  }, false);
+}
+//-------------------------------------------------------------------//
+
+///////////////////////////////////////////////////
 
   // Function to group messages by date
 function addMessageToDisplay(messageText, messageTime, timeString24) {
@@ -249,7 +300,6 @@ function addMessageToDisplay(messageText, messageTime, timeString24) {
   const today = new Date();
   const yesterday = new Date();
   yesterday.setDate(today.getDate() - 1);
-  // console.log("this is yesterday date: "+ yesterday.setDate(today.getDate() - 1));
 
   const todayString = `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`;
   const yesterdayString = `${yesterday.getDate()}/${yesterday.getMonth()+1}/${yesterday.getFullYear()}`;
@@ -261,7 +311,7 @@ function addMessageToDisplay(messageText, messageTime, timeString24) {
   } else if (messageDate === yesterdayString) {
     dateGroupHeaderText ='Yesterday';
   } else {
-    dateGroupHeaderText = messageTime;
+    dateGroupHeaderText = messageDate;
   }
 
   // Check if there's already a group for the current date
@@ -290,6 +340,7 @@ function addMessageToDisplay(messageText, messageTime, timeString24) {
   const message = document.createElement('p');
   message.innerHTML = messageText;
   message.classList.add('message-card-p-content');
+  
 
   // Create an element for the time
   const timeElement = document.createElement('span');
@@ -301,13 +352,16 @@ function addMessageToDisplay(messageText, messageTime, timeString24) {
   messageCard.appendChild(message);
   messageCard.appendChild(timeElement);
 
+   // Attach double-click event for deletion
+   addSwipeToDelete(messageCard, messageText);
+
   // Append the message card to the corresponding date group
   dateGroup.appendChild(messageCard);
 
   // Save the message to local storage
   saveMessageToLocalStorage(messageText, messageTime, timeString24);
 
-  //event listener to hide and expose messageTime;
+  // event listener to hide and expose messageTime;
   timeElement.style.display = 'none';
   messageCard.addEventListener('click', () => {
     if (timeElement.style.display == 'none') {
@@ -328,43 +382,109 @@ function loadMessages() {
   messages.forEach((msgObj) => {
     addMessageToDisplay(msgObj.text, msgObj.time, msgObj.time24);
   });
+  // make messages visible on loading
+  messageContainer.style.display = 'block';
+  setTimeout ( () => {
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+  }, 2000);
 }
+/////////////////////////////////////////////////////
 
 // Call loadMessages when the page loads
-document.addEventListener('DOMContentLoaded', loadMessages);
-
-
+document.addEventListener('DOMContentLoaded', () => {
+  if (!window.messagesLoaded) {
+    loadMessages();
+    window.messagesLoaded = true; // Prevent reloading messages multiple times
+  }
+});
 
 // Function to clear all the messages
 function clearAllMessages () {
   //remove messages from the local storage
-  localStorage.removeItem('massages');
+  localStorage.removeItem('messages');
   //clear the message container  on the page
   const messageContainer = document.querySelector('.mpesaMessage1-div');
   messageContainer.innerHTML = '';
-  if (deleteAlert.style.display == 'block'){
+  if (deleteAlert.style.display == 'block') {
     deleteAlert.style.display = 'none';
   }
 }
 
-//Attach clearAllMessages function to the button click
-// messagesMore.addEventListener('click', clearAllMessages);
 
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   const messagesMore = document.querySelector('.messages-more');
+  // // Function to display a message
+// function addMessageToDisplay(messageText, messageTime, timeString24) {
+//   const messageContainer = document.querySelector('.mpesaMessage1-div');
+//   const messageDate = messageTime.split(' at ')[0];
 
-//   if (messagesMore) {
-//     messagesMore.addEventListener('click', () => {
-//       // Clear all messages
-//       localStorage.removeItem('messages');
-//       const messageContainer = document.querySelector('.mpesaMessage1-div');
-//       if (messageContainer) {
-//         messageContainer.innerHTML = '';
-//       }
-//       alert('All messages have been deleted.');
-//     });
+//   // Date grouping logic...
+//   const today = new Date();
+//   const yesterday = new Date();
+//   yesterday.setDate(today.getDate() - 1);
+
+//   const todayString = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
+//   const yesterdayString = `${yesterday.getDate()}/${yesterday.getMonth() + 1}/${yesterday.getFullYear()}`;
+
+//   let dateGroupHeaderText;
+//   if (messageDate === todayString) {
+//     dateGroupHeaderText = 'Today';
+//   } else if (messageDate === yesterdayString) {
+//     dateGroupHeaderText = 'Yesterday';
 //   } else {
-//     console.error('Button with class "messages-more" not found.');
+//     dateGroupHeaderText = messageDate;
 //   }
-// });
+
+//   let dateGroup = document.querySelector(`.date-group[data-date='${messageDate}']`);
+//   if (!dateGroup) {
+//     dateGroup = document.createElement('div');
+//     dateGroup.classList.add('date-group');
+//     dateGroup.setAttribute('data-date', messageDate);
+
+//     const dateHeader = document.createElement('h4');
+//     dateHeader.textContent = dateGroupHeaderText;
+//     dateHeader.classList.add('date-group-header') /////////added the line
+//     dateGroup.appendChild(dateHeader);
+//     messageContainer.appendChild(dateGroup);
+//   }
+
+//   const message = document.createElement('div');
+//   // message.classList.add('message');
+//   message.classList.add('message-card');
+//   message.innerHTML = `
+//     <p class="message-card-p-content">${messageText}</p> 
+//     <span class="each-message-time">${timeString24} <i class="bi bi-dot"></i> <span>Safaricom</span></span>
+//   `; 
+//   // const thisMessage = document.querySelector('.message-card-p-content');
+//   // const timeElement = document.querySelector('.each-message-time'); 
+
+//   // console.log("thiuds time element:"+  timeElement.textContent);
+
+//   // timeElement.style.display = 'none';
+//   // thisMessage.addEventListener('click', () => {
+//   //   if (timeElement.style.display == 'none') {
+//   //     timeElement.style.display = 'block';
+//   //   } else {
+//   //     timeElement.style.display = 'none';
+//   //   }
+//   // })
+
+//   // Attach double-click event for deletion
+//   addDoubleClickToDelete(message, messageText);
+
+//   // Append the message card to the corresponding date group
+//   dateGroup.appendChild(message);
+
+//   // Save the message to local storage
+//   saveMessageToLocalStorage(messageText, messageTime, timeString24);
+// }
+
+// // Function to load messages from localStorage
+// function loadMessages() {
+//   const messages = JSON.parse(localStorage.getItem('messages')) || [];
+//   const messageContainer = document.querySelector('.mpesaMessage1-div');
+//   messageContainer.innerHTML = ''; // Clear existing messages
+
+//   messages.forEach(({ text, time, time24 }) => {
+//     addMessageToDisplay(text, time, time24);
+//   });
+// }
