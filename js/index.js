@@ -150,7 +150,8 @@ function printMessage() {
 
   // Name to uppercase
   const nameInUppercase = name.toUpperCase();
-
+  const mainFooter = document.querySelector(".main-footer");
+  
   // Calculate transaction cost
   let cost;
   if (amount <= 100) {
@@ -179,6 +180,7 @@ function printMessage() {
     errorMessage.style.color = 'white';
     errorMessage.style.display = 'block';
     popUp.style.display = 'block';
+    mainFooter.style.display = 'none';
 
     modal1.style.display = 'block';
     profileName.innerHTML = `${nameInUppercase}`;
