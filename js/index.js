@@ -48,6 +48,7 @@ markAsRead.addEventListener('click', () => {
 
 modal1Closer.addEventListener('click', () => {
   modal1.style.display = 'none';
+  mainFooter.style.display = 'block';
 });
 
 modal1Done.addEventListener('click', () => {
@@ -222,26 +223,21 @@ function saveMessageToLocalStorage(messageText, messageTime, timeString24) {
 // Call loadMessages when the page loads
 document.addEventListener('DOMContentLoaded', loadMessages);
 
-// Function to submit message on 'Enter' key press
-function enterToSubmit(event) {
-  if (event.key === 'Enter') {
-    printMessage();
-  }
-}
+// // Function to submit message on 'Enter' key press
+// function enterToSubmit(event) {
+//   if (event.key === 'Enter') {
+//     printMessage();
+//   }
+// }
 
 // Adding event listener for Enter key
-document.querySelector('.js-input1').addEventListener('keydown', enterToSubmit);
+// document.querySelector('.js-input1').addEventListener('keydown', enterToSubmit);
 
 // Function to clear messages if needed
 function clearMessages() {
   localStorage.removeItem('messages');
   loadMessages(); // Refresh the displayed messages
 }
-
-// Example of attaching clearMessages to a button click
-document
-  .querySelector('.clear-messages-button')
-  .addEventListener('click', clearMessages);
 
   //////---------//////
 
