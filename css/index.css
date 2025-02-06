@@ -677,4 +677,14 @@ a {
   padding: 10px 12px;
 }
 
+.main-footer {
+  position: fixed;
+  bottom: 0;
+  font-weight: lighter;
+  color: white;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 

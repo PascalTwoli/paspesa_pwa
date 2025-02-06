@@ -258,12 +258,14 @@ function deleteMessage(messageElement, messageText) {
 function addSwipeToDelete(messageElement, messageText) {
   let startX, startY;  
 
-  messageElement.addEventListener('touchstart', function(event) {  
+  messageElement.addEventListener('touchstart', function(event) { 
+    event.preventDefault();
     startX = event.touches[0].clientX;  
     startY = event.touches[0].clientY;  
   }, false);  
 
-  messageElement.addEventListener('touchend', function(event) {  
+  messageElement.addEventListener('touchend', function(event) { 
+    event.preventDefault(); 
     const endX = event.changedTouches[0].clientX;  
     const endY = event.changedTouches[0].clientY;  
     const deltaX = endX - startX;  
