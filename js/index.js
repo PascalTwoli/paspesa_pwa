@@ -363,9 +363,6 @@ function addMessageToDisplay(messageText, messageTime, timeString24) {
   // Append the message and time to the message card
   messageCard.appendChild(message);
   messageCard.appendChild(timeElement);
-
-  // Attach double-click event for deletion
-  addSwipeToDelete(messageCard, messageText);
   
   // Add scroll button to the bottom
   const scrollButton = document.createElement('span');
@@ -387,7 +384,8 @@ function addMessageToDisplay(messageText, messageTime, timeString24) {
 
   // Append the message card to the corresponding date group
   dateGroup.appendChild(messageCard);
- 
+  // Attach double-click event for deletion
+  addSwipeToDelete(messageCard, messageText);
   // Save the message to local storage
   saveMessageToLocalStorage(messageText, messageTime, timeString24);
 
@@ -398,7 +396,7 @@ function addMessageToDisplay(messageText, messageTime, timeString24) {
     e.preventDefault();
     const confirmDelete = confirm("Do you want to delete this message?");
     if (confirmDelete) {
-      deleteMessage(messageElement, messageText);
+      deleteMessage(messageCard, messageText);
     }
   })
 
