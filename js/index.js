@@ -389,15 +389,24 @@ function addMessageToDisplay(messageText, messageTime, timeString24) {
   // Save the message to local storage
   saveMessageToLocalStorage(messageText, messageTime, timeString24);
 
+  // Logic for deleting a message 
+  function deleteEachMessage () {
+    const confirmDelete = confirm("Do you want to delete this message?");
+    if (confirmDelete) {
+      deleteMessage(messageCard, messageText);
+    }
+  }
   //click events
   let clickTimeout;
   //event listener for deleting a message
   messageCard.addEventListener('dblclick', (e)=> {
     e.preventDefault();
-    const confirmDelete = confirm("Do you want to delete this message?");
-    if (confirmDelete) {
-      deleteMessage(messageCard, messageText);
-    }
+    deleteEachMessage ()
+  })
+
+  messageCard.addEventListener('contextmenu', (e)=> {
+    e.preventDefault();
+    deleteEachMessage ()
   })
 
   // event listener to hide and expose messageTime;
