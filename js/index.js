@@ -265,40 +265,40 @@ function deleteMessage(messageElement, messageText) {
 }
 
 // functionality for deleting a message by swiping left or right
-function addSwipeToDelete(messageElement, messageText) {
-  let startX, startY;  
+// function addSwipeToDelete(messageElement, messageText) {
+//   let startX, startY;  
 
-  messageElement.addEventListener('touchstart', function(event) { 
-    event.preventDefault();
-    startX = event.touches[0].clientX;  
-    startY = event.touches[0].clientY;  
-  }, false);  
+//   messageElement.addEventListener('touchstart', function(event) { 
+//     event.preventDefault();
+//     startX = event.touches[0].clientX;  
+//     startY = event.touches[0].clientY;  
+//   }, false);  
 
-  messageElement.addEventListener('touchend', function(event) { 
-    event.preventDefault(); 
-    const endX = event.changedTouches[0].clientX;  
-    const endY = event.changedTouches[0].clientY;  
-    const deltaX = endX - startX;  
-    const deltaY = endY - startY;  
+//   messageElement.addEventListener('touchend', function(event) { 
+//     event.preventDefault(); 
+//     const endX = event.changedTouches[0].clientX;  
+//     const endY = event.changedTouches[0].clientY;  
+//     const deltaX = endX - startX;  
+//     const deltaY = endY - startY;  
 
-    if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY)) {  
-      // Swipe detected  
-      if (deltaX > 0) {  
-        // console.log('Swiped right');  
-        const confirmDelete = confirm("Do you want to delete this message?");
-        if (confirmDelete) {
-          deleteMessage(messageElement, messageText);
-        }
-      } else {  
-        // console.log('Swiped left'); 
-        const confirmDelete = confirm("Do you want to delete this message?");
-        if (confirmDelete) {
-          deleteMessage(messageElement, messageText);
-        } 
-      }  
-    }  
-  }, false);
-}
+//     if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY)) {  
+//       // Swipe detected  
+//       if (deltaX > 0) {  
+//         // console.log('Swiped right');  
+//         const confirmDelete = confirm("Do you want to delete this message?");
+//         if (confirmDelete) {
+//           deleteMessage(messageElement, messageText);
+//         }
+//       } else {  
+//         // console.log('Swiped left'); 
+//         const confirmDelete = confirm("Do you want to delete this message?");
+//         if (confirmDelete) {
+//           deleteMessage(messageElement, messageText);
+//         } 
+//       }  
+//     }  
+//   }, false);
+// }
 
 
 //-------------------------------------------------------------------//
@@ -386,7 +386,7 @@ function addMessageToDisplay(messageText, messageTime, timeString24) {
   // Append the message card to the corresponding date group
   dateGroup.appendChild(messageCard);
   // Attach double-click event for deletion
-  addSwipeToDelete(messageCard, messageText);
+  // addSwipeToDelete(messageCard, messageText); //////////////////////////////edited
   // Save the message to local storage
   saveMessageToLocalStorage(messageText, messageTime, timeString24);
 
@@ -399,11 +399,11 @@ function addMessageToDisplay(messageText, messageTime, timeString24) {
   }
   //click events
   let clickTimeout;
-  //event listener for deleting a message
-  messageCard.addEventListener('dblclick', (e)=> {
-    e.preventDefault();
-    deleteEachMessage ()
-  })
+  //event listener for deleting a message on double click
+  // messageCard.addEventListener('dblclick', (e)=> {
+  //   e.preventDefault();
+  //   deleteEachMessage ()
+  // })
 
   messageCard.addEventListener('contextmenu', (e)=> {
     e.preventDefault();
@@ -411,19 +411,42 @@ function addMessageToDisplay(messageText, messageTime, timeString24) {
   })
 
   // event listener to hide and expose messageTime;
-  timeElement.style.display = 'none';
-  messageCard.addEventListener('click', (e) => {
-    e.preventDefault()
-    clearTimeout(clickTimeout);
-    clickTimeout = setTimeout(() => {
-      if (timeElement.style.display == 'none') {
-        timeElement.style.display = 'block';
-      } else {
-        timeElement.style.display = 'none';
-      }
-    }, 300)
+  // timeElement.style.display = 'none';
+  // messageCard.addEventListener('click', (e) => {
+  //   e.preventDefault()
+  //   clearTimeout(clickTimeout);                    ///////////////edited
+  //   clickTimeout = setTimeout(() => {
+  //     if (timeElement.style.display == 'none') {
+  //       timeElement.style.display = 'block';
+  //     } else {
+  //       timeElement.style.display = 'none';
+  //     }
+  //   }, 300)
 
+  // })
+
+   // creating a hammer instance for touch gestures 
+  let messageHammer = new Hammer(messageCard)
+
+  // hammer swipe event for trigering delete
+  messageHammer.on('swipe', function(e) {
+      deleteEachMessage ()
   })
+  // hammer doubletap event for trigering delete
+  messageHammer.on('doubletap', function(e) {
+     deleteEachMessage ()
+  })
+
+  // hammer tap event for exposing the message time
+  timeElement.style.display = 'none';
+  messageHammer.on('tap', function(event) {
+    if (timeElement.style.display == 'none') {
+      timeElement.style.display = 'block';
+    } else {
+      timeElement.style.display = 'none';
+    }
+});
+
 }
 
 // Function to load messages from local storage on page load
