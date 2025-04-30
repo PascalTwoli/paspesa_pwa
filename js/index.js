@@ -52,7 +52,8 @@ modal1Closer.addEventListener('click', () => {
 });
 
 modal1Done.addEventListener('click', () => {
-  modal1.style.display = 'none';
+  // modal1.style.display = 'none';
+  messagesModal.style.display = 'block';
 });
 
 fromMessages.addEventListener('click', () => {
